@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace RWview
 {
@@ -43,7 +41,12 @@ namespace RWview
             string retval = "";
             foreach (byte b in bytes)
                 retval += b.ToString("X2");
-            return retval;
+            return new string(retval.SkipLast(8 - num.Length).ToArray());
+        }
+
+        public static string HexToBinary(string hexvalue)
+        {
+            return Convert.ToString(Convert.ToInt32(hexvalue, 16), 2);
         }
     }
 

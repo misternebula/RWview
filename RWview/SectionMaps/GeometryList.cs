@@ -1,20 +1,25 @@
-﻿namespace RWview.SectionMaps
+﻿using System.Linq;
+
+namespace RWview.SectionMaps
 {
-    class Extension : SectionBase
+    class GeometryList : SectionBase
     {
-        public override string Name => "Extension";
-        public override string SectionId => "03000000";
+        public override string Name => "Geometry List";
+        public override string SectionId => "1A000000";
 
         private int Index = 0;
+        private int StructIndex = 0;
 
         public override void Deserialize(string hex, int levelsDeep)
         {
             Index = 0;
+            StructIndex = 0;
             ConsoleWriter.Write(levelsDeep, $"{Name}, length {hex.Length / 2}", true);
-            if (hex == "")
-            {
-                return;
-            }
+            var structHeader = Utils.ReadHeader(hex, Index, ref Index);
+            var structSection = new string(hex.Skip(Index).Take(structHeader.Length * 2).ToArray());
+            Index += (structHeader.Length * 2);
+            ConsoleWriter.Write(levelsDeep, $" ├─ Struct, length {structHeader.Length}");
+            ConsoleWriter.Write(levelsDeep, $" │   └─ Geometry Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
 
             RWHeader nextHeader;
             SectionBase nextHeaderPlugin;

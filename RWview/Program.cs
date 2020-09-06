@@ -14,7 +14,7 @@ namespace RWview
             var index = 0;
             var header = Utils.ReadHeader(hex, 0, ref index); // Should be clump
             var plugin = PluginManager.GetSectionFromId(header.ID); // Get clump plugin
-            plugin.Deserialize(Utils.ReadFile(hex, index, header.Length*2, ref index), "", ""); // Deserialize file
+            plugin.Deserialize(Utils.ReadFile(hex, index, header.Length * 2, ref index), 0); // Deserialize file
         }
     }
 }

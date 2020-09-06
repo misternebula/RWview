@@ -1,8 +1,6 @@
 ﻿using RWview.SectionMaps;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace RWview
 {
@@ -15,8 +13,11 @@ namespace RWview
             PluginList = new List<SectionBase>
             {
                 new Clump(),
+                new Extension(),
                 new FrameList(),
-                new Extension()
+                new GeometryList(),
+                new Geometry(),
+                new HAnimPLG()
             };
         }
 
