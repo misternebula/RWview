@@ -10,7 +10,7 @@
         public override void Deserialize(string hex, int levelsDeep)
         {
             Index = 0;
-            ConsoleWriter.Write(levelsDeep, $"{Name}, length {hex.Length / 2}", true);
+            ConsoleWriter.Write(levelsDeep, $"{Name}", true);
             ConsoleWriter.Write(levelsDeep, $" ├─ HAnim Version : {Utils.ReadFile(hex, Index, 8, ref Index)}");
             ConsoleWriter.Write(levelsDeep, $" ├─ Node ID : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true)}");
             var boneCount = Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true);

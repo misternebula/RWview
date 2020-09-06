@@ -2,10 +2,10 @@
 
 namespace RWview.SectionMaps
 {
-    class FrameList : SectionBase
+    class MaterialList : SectionBase
     {
-        public override string Name => "Frame List";
-        public override string SectionId => "0E000000";
+        public override string Name => "Material List";
+        public override string SectionId => "08000000";
 
         private int Index = 0;
         private int StructIndex = 0;
@@ -19,20 +19,17 @@ namespace RWview.SectionMaps
             var structSection = new string(hex.Skip(Index).Take(structHeader.Length * 2).ToArray());
             Index += (structHeader.Length * 2);
             ConsoleWriter.Write(levelsDeep, $" ├─ Struct");
-            var frameCount = Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true);
-            ConsoleWriter.Write(levelsDeep, $" │   ├─ Frame Count : {frameCount}");
-            for (int i = 0; i < frameCount; i++)
+            var matCount = Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true);
+            ConsoleWriter.Write(levelsDeep, $" │   ├─ Material Count : {matCount}");
+            for (int i = 0; i < matCount; i++)
             {
-                ConsoleWriter.Write(levelsDeep, $" │   ├─ [{i + 1}/{frameCount}] Rotation Matrix : {Utils.ReadFile(structSection, StructIndex, 72, ref StructIndex)}");
-                ConsoleWriter.Write(levelsDeep, $" │   ├─ [{i + 1}/{frameCount}] Position : {Utils.ReadFile(structSection, StructIndex, 24, ref StructIndex)}");
-                ConsoleWriter.Write(levelsDeep, $" │   ├─ [{i + 1}/{frameCount}] Parent Frame : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
-                if (i + 1 != frameCount)
+                if (i + 1 != matCount)
                 {
-                    ConsoleWriter.Write(levelsDeep, $" │   ├─ [{i + 1}/{frameCount}] Flags : {Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex)}");
+                    ConsoleWriter.Write(levelsDeep, $" │   ├─ [{i + 1}/{matCount}] Material Index : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
                 }
                 else
                 {
-                    ConsoleWriter.Write(levelsDeep, $" │   └─ [{i + 1}/{frameCount}] Flags : {Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex)}");
+                    ConsoleWriter.Write(levelsDeep, $" │   └─ [{i + 1}/{matCount}] Material Index : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
                 }
             }
 
@@ -52,11 +49,6 @@ namespace RWview.SectionMaps
                     nextHeaderPlugin.Deserialize(Utils.ReadFile(hex, Index, nextHeader.Length * 2, ref Index), levelsDeep + 1);
                 }
             }
-        }
-
-        private string DeserializeTVector()
-        {
-            return "";
         }
     }
 }

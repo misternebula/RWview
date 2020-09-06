@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 
 namespace RWview
 {
@@ -47,6 +48,25 @@ namespace RWview
         public static string HexToBinary(string hexvalue)
         {
             return Convert.ToString(Convert.ToInt32(hexvalue, 16), 2);
+        }
+
+        public static bool HexToBool(string hex)
+        {
+            if (hex.StartsWith("01") && hex.Skip(2).All(x => x == '0'))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static string HexToString(string hex)
+        {
+            byte[] raw = new byte[hex.Length / 2];
+            for (int i = 0; i < raw.Length; i++)
+            {
+                raw[i] = Convert.ToByte(hex.Substring(i * 2, 2), 16);
+            }
+            return Encoding.ASCII.GetString(raw);
         }
     }
 

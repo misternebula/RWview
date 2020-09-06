@@ -10,7 +10,7 @@
         public override void Deserialize(string hex, int levelsDeep)
         {
             Index = 0;
-            ConsoleWriter.Write(levelsDeep, $"{Name}, length {hex.Length / 2}", true);
+            ConsoleWriter.Write(levelsDeep, $"{Name}", true);
             if (hex == "")
             {
                 return;
@@ -25,7 +25,7 @@
                 nextHeaderPlugin = PluginManager.GetSectionFromId(nextHeader.ID);
                 if (nextHeaderPlugin == null)
                 {
-                    ConsoleWriter.Write(levelsDeep, $" ├─ Unknown ({nextHeader.ID}), length {nextHeader.Length}");
+                    ConsoleWriter.Write(levelsDeep, $" ├─ Unknown ({nextHeader.ID})");
                 }
                 else
                 {

@@ -17,7 +17,11 @@ namespace RWview
                 new FrameList(),
                 new GeometryList(),
                 new Geometry(),
-                new HAnimPLG()
+                new HAnimPLG(),
+                new Material(),
+                new MaterialList(),
+                new String(),
+                new Texture()
             };
         }
 

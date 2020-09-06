@@ -15,11 +15,11 @@ namespace RWview.SectionMaps
         {
             Index = 0;
             StructIndex = 0;
-            Console.WriteLine($"{Name}, length {hex.Length / 2}");
+            Console.WriteLine($"{Name}");
             var structHeader = Utils.ReadHeader(hex, Index, ref Index);
             var structSection = new string(hex.Skip(Index).Take(structHeader.Length * 2).ToArray());
             Index += (structHeader.Length * 2);
-            ConsoleWriter.Write(levelsDeep, $" ├─ Struct, length {structHeader.Length}");
+            ConsoleWriter.Write(levelsDeep, $" ├─ Struct");
             ConsoleWriter.Write(levelsDeep, $" │   ├─ Atomic Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
             ConsoleWriter.Write(levelsDeep, $" │   ├─ Light Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
             ConsoleWriter.Write(levelsDeep, $" │   └─ Camera Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
@@ -33,7 +33,7 @@ namespace RWview.SectionMaps
                 nextHeaderPlugin = PluginManager.GetSectionFromId(nextHeader.ID);
                 if (nextHeaderPlugin == null)
                 {
-                    ConsoleWriter.Write(levelsDeep, $" ├─ Unknown ({nextHeader.ID}), length {nextHeader.Length}");
+                    ConsoleWriter.Write(levelsDeep, $" ├─ Unknown ({nextHeader.ID})");
                 }
                 else
                 {
