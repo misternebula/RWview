@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWview", "RWview\RWview.csproj", "{AF09305A-7B84-4A36-A403-E6713545F5FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF09305A-7B84-4A36-A403-E6713545F5FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF09305A-7B84-4A36-A403-E6713545F5FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF09305A-7B84-4A36-A403-E6713545F5FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF09305A-7B84-4A36-A403-E6713545F5FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {335AA763-C46E-43F1-A514-A0DD3031ED92}
+	EndGlobalSection
+EndGlobal
