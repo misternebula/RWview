@@ -9,7 +9,6 @@
 
         public override void Deserialize(string hex, int levelsDeep)
         {
-            Index = 0;
             ConsoleWriter.Write(levelsDeep, $"{Name}", true);
             ConsoleWriter.Write(levelsDeep, $" ├─ HAnim Version : {Utils.ReadFile(hex, Index, 8, ref Index)}");
             ConsoleWriter.Write(levelsDeep, $" ├─ Node ID : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true)}");

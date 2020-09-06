@@ -24,21 +24,9 @@ namespace RWview.SectionMaps
             ConsoleWriter.Write(levelsDeep, $" │   ├─ ??? : {Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex)}");
             ConsoleWriter.Write(levelsDeep, $" │   └─ Has Texture : {Utils.HexToBool(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex))}");
 
-            RWHeader nextHeader;
-            SectionBase nextHeaderPlugin;
-
             while (Index != (hex.Length))
             {
-                nextHeader = Utils.ReadHeader(hex, Index, ref Index);
-                nextHeaderPlugin = PluginManager.GetSectionFromId(nextHeader.ID);
-                if (nextHeaderPlugin == null)
-                {
-                    ConsoleWriter.Write(levelsDeep, $" ├─ Unknown ({nextHeader.ID})");
-                }
-                else
-                {
-                    nextHeaderPlugin.Deserialize(Utils.ReadFile(hex, Index, nextHeader.Length * 2, ref Index), levelsDeep + 1);
-                }
+                Utils.FindNextSection(hex, ref Index, levelsDeep);
             }
         }
     }

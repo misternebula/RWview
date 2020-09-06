@@ -19,6 +19,7 @@ namespace RWview
                 new Geometry(),
                 new HAnimPLG(),
                 new Material(),
+                new MaterialEffectsPLG(),
                 new MaterialList(),
                 new String(),
                 new Texture()

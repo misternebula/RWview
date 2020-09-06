@@ -68,6 +68,22 @@ namespace RWview
             }
             return Encoding.ASCII.GetString(raw);
         }
+
+        public static void FindNextSection(string hex, ref int index, int levelsDeep)
+        {
+            var nextHeader = Utils.ReadHeader(hex, index, ref index);
+            var nextHeaderPlugin = PluginManager.GetSectionFromId(nextHeader.ID);
+            if (nextHeaderPlugin == null)
+            {
+                ConsoleWriter.Write(levelsDeep, $" ├─ Unknown ({nextHeader.ID})");
+            }
+            else
+            {
+                var plugin = nextHeaderPlugin.GetType();
+                var obj = (SectionBase)Activator.CreateInstance(plugin);
+                obj.Deserialize(Utils.ReadFile(hex, index, nextHeader.Length * 2, ref index), levelsDeep + 1);
+            }
+        }
     }
 
     public class RWHeader

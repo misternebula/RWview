@@ -9,9 +9,8 @@
 
         public override void Deserialize(string hex, int levelsDeep)
         {
-            Index = 0;
             ConsoleWriter.Write(levelsDeep, $"{Name}", true);
-            ConsoleWriter.Write(levelsDeep, $" ├─ String : {Utils.HexToString(Utils.ReadFile(hex, Index, hex.Length, ref Index))}");
+            ConsoleWriter.Write(levelsDeep, $" └─ String : {Utils.HexToString(Utils.ReadFile(hex, Index, hex.Length, ref Index))}");
         }
     }
 }
