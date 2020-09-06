@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RWview.SectionMaps
+﻿namespace RWview.SectionMaps
 {
     class Extension : SectionBase
     {

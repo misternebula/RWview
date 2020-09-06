@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RWview.SectionMaps
+﻿namespace RWview.SectionMaps
 {
     class MaterialEffectsPLG : SectionBase
     {
@@ -16,7 +14,7 @@ namespace RWview.SectionMaps
             for (int i = 0; i < 2; i++)
             {
                 var type = Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true);
-                ConsoleWriter.Write(levelsDeep, $" ├─ [Effect {i+1}] Type : {type}");
+                ConsoleWriter.Write(levelsDeep, $" ├─ [Effect {i + 1}] Type : {type}");
                 switch (type)
                 {
                     case 0:
@@ -25,7 +23,7 @@ namespace RWview.SectionMaps
                     case 3:
                         break;
                     case 4:
-                        ConsoleWriter.Write(levelsDeep, $" ├─ [Effect {i+1}] Source Blend Mode : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true)}");
+                        ConsoleWriter.Write(levelsDeep, $" ├─ [Effect {i + 1}] Source Blend Mode : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true)}");
                         ConsoleWriter.Write(levelsDeep, $" ├─ [Effect {i + 1}] Destination Blend Mode : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true)}");
                         var hasTexture = Utils.HexToBool(Utils.ReadFile(hex, Index, 8, ref Index));
                         ConsoleWriter.Write(levelsDeep, $" ├─ [Effect {i + 1}] Has Texture : {hasTexture}");
