@@ -26,7 +26,7 @@
             ConsoleWriter.Write(levelsDeep + 1, $"Unknown Table");
             for (int i = 0; i < tableCount; i++)
             {
-                ConsoleWriter.Write(levelsDeep + 2, $"[{i+1}/{tableCount}] Unknown : {Utils.ReadFile(hex, Index, 16, ref Index)}");
+                ConsoleWriter.Write(levelsDeep + 2, $"[{i + 1}/{tableCount}] Unknown : {Utils.ReadFile(hex, Index, 16, ref Index)}");
             }
             for (int i = 0; i < meshSubCount; i++)
             {

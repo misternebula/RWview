@@ -43,7 +43,7 @@ namespace RWview
             foreach (byte b in bytes)
             {
                 retval += b.ToString("X2");
-            } 
+            }
             return new string(retval.SkipLast(8 - num.Length).ToArray());
         }
 

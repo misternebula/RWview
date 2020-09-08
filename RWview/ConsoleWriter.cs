@@ -28,7 +28,7 @@ namespace RWview
             int longestLineLength = tempLines.Aggregate("", (max, cur) => max.Length > cur.Length ? max : cur).Length;
             foreach (var line in tempLines)
             {
-                bigString += line.PadRight(longestLineLength) + Environment.NewLine; 
+                bigString += line.PadRight(longestLineLength) + Environment.NewLine;
             }
 
             var sb = new StringBuilder(bigString);
@@ -57,7 +57,7 @@ namespace RWview
                 bigString = sb.ToString();
             }
             bigString = bigString.Replace("#", "");
-            
+
             Console.WriteLine(bigString);
         }
 

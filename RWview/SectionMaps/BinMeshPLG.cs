@@ -10,7 +10,7 @@
         public override void Deserialize(string hex, int levelsDeep)
         {
             ConsoleWriter.Write(levelsDeep, $"{Name}");
-            ConsoleWriter.Write(levelsDeep+1, $"Face Type : {Utils.ReadFile(hex, Index, 8, ref Index)}");
+            ConsoleWriter.Write(levelsDeep + 1, $"Face Type : {Utils.ReadFile(hex, Index, 8, ref Index)}");
             var splitCount = Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true);
             ConsoleWriter.Write(levelsDeep + 1, $"Split Count: {splitCount}");
             ConsoleWriter.Write(levelsDeep + 1, $"Index Count: {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true)}");
