@@ -17,7 +17,7 @@ namespace RWview.SectionMaps
             var structSection = new string(hex.Skip(Index).Take(structHeader.Length * 2).ToArray());
             Index += (structHeader.Length * 2);
             ConsoleWriter.Write(levelsDeep + 1, $"Struct");
-            ConsoleWriter.Write(levelsDeep + 2, $"Geometry Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
+            ConsoleWriter.Write(levelsDeep + 2, $"Geometry Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), Endian.Little)}");
 
             while (Index != (hex.Length))
             {

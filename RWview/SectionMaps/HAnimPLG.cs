@@ -11,8 +11,8 @@
         {
             ConsoleWriter.Write(levelsDeep, $"{Name}");
             ConsoleWriter.Write(levelsDeep + 1, $"HAnim Version : {Utils.ReadFile(hex, Index, 8, ref Index)}");
-            ConsoleWriter.Write(levelsDeep + 1, $"Node ID : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true)}");
-            var boneCount = Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true);
+            ConsoleWriter.Write(levelsDeep + 1, $"Node ID : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), Endian.Little)}");
+            var boneCount = Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), Endian.Little);
             if (boneCount == 0)
             {
                 ConsoleWriter.Write(levelsDeep + 1, $"Bone Count : {boneCount}");

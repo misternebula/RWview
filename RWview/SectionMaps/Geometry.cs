@@ -18,10 +18,10 @@ namespace RWview.SectionMaps
             Index += (structHeader.Length * 2);
             ConsoleWriter.Write(levelsDeep + 1, $"Struct");
             ConsoleWriter.Write(levelsDeep + 2, $"Flags : {Utils.HexToBinary(Utils.ReadFile(structSection, StructIndex, 4, ref StructIndex))}");
-            ConsoleWriter.Write(levelsDeep + 2, $"Unknown Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 4, ref StructIndex), true)}");
-            ConsoleWriter.Write(levelsDeep + 2, $"Face Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
-            ConsoleWriter.Write(levelsDeep + 2, $"Vertex Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
-            ConsoleWriter.Write(levelsDeep + 2, $"Frame Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
+            ConsoleWriter.Write(levelsDeep + 2, $"Unknown Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 4, ref StructIndex), Endian.Little)}");
+            ConsoleWriter.Write(levelsDeep + 2, $"Face Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), Endian.Little)}");
+            ConsoleWriter.Write(levelsDeep + 2, $"Vertex Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), Endian.Little)}");
+            ConsoleWriter.Write(levelsDeep + 2, $"Frame Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), Endian.Little)}");
 
             while (Index != (hex.Length))
             {

@@ -17,11 +17,11 @@ namespace RWview.SectionMaps
             var structSection = new string(hex.Skip(Index).Take(structHeader.Length * 2).ToArray());
             Index += (structHeader.Length * 2);
             ConsoleWriter.Write(levelsDeep + 1, $"Struct");
-            var matCount = Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true);
+            var matCount = Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), Endian.Little);
             ConsoleWriter.Write(levelsDeep + 2, $"Material Count : {matCount}");
             for (int i = 0; i < matCount; i++)
             {
-                ConsoleWriter.Write(levelsDeep + 2, $"[{i + 1}/{matCount}] Material Index : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
+                ConsoleWriter.Write(levelsDeep + 2, $"[{i + 1}/{matCount}] Material Index : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), Endian.Little)}");
             }
 
             while (Index != (hex.Length))

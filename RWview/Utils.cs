@@ -13,15 +13,15 @@ namespace RWview
             var header = new RWHeader
             {
                 ID = ReadFile(file, start, 8, ref index),
-                Length = HexToInt(ReadFile(file, index, 8, ref index), true),
+                Length = HexToInt(ReadFile(file, index, 8, ref index), Endian.Little),
                 RWVersion = ReadFile(file, index, 8, ref index)
             };
             return header;
         }
 
-        public static int HexToInt(string hex, bool little)
+        public static int HexToInt(string hex, Endian endianType)
         {
-            if (little)
+            if (endianType == Endian.Little)
             {
                 return int.Parse(LittleEndian(hex), System.Globalization.NumberStyles.HexNumber);
             }
@@ -95,5 +95,11 @@ namespace RWview
         public string ID;
         public int Length;
         public string RWVersion;
+    }
+
+    public enum Endian
+    {
+        Little,
+        Big
     }
 }

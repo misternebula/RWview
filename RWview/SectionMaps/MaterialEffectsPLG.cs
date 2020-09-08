@@ -10,14 +10,14 @@
         public override void Deserialize(string hex, int levelsDeep)
         {
             ConsoleWriter.Write(levelsDeep, $"{Name}");
-            ConsoleWriter.Write(levelsDeep + 1, $"Type : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true)}");
+            ConsoleWriter.Write(levelsDeep + 1, $"Type : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), Endian.Little)}");
             if (hex.Length == Index)
             {
                 return;
             }
             for (int i = 0; i < 2; i++)
             {
-                var type = Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true);
+                var type = Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), Endian.Little);
                 ConsoleWriter.Write(levelsDeep + 1, $"[Effect {i + 1}] Type : {type}");
                 switch (type)
                 {
@@ -31,8 +31,8 @@
                         ConsoleWriter.Write(levelsDeep + 1, $"[Effect {i + 1}] RWView does not support this type yet.");
                         break;
                     case 4:
-                        ConsoleWriter.Write(levelsDeep + 1, $"[Effect {i + 1}] Source Blend Mode : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true)}");
-                        ConsoleWriter.Write(levelsDeep + 1, $"[Effect {i + 1}] Destination Blend Mode : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true)}");
+                        ConsoleWriter.Write(levelsDeep + 1, $"[Effect {i + 1}] Source Blend Mode : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), Endian.Little)}");
+                        ConsoleWriter.Write(levelsDeep + 1, $"[Effect {i + 1}] Destination Blend Mode : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), Endian.Little)}");
                         var hasTexture = Utils.HexToBool(Utils.ReadFile(hex, Index, 8, ref Index));
                         ConsoleWriter.Write(levelsDeep + 1, $"[Effect {i + 1}] Has Texture : {hasTexture}");
                         if (hasTexture)
