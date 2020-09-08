@@ -4,15 +4,18 @@ using System.Linq;
 
 namespace RWview
 {
-    static class PluginManager
+    static class SectionMapManager
     {
-        static List<SectionBase> PluginList = new List<SectionBase>();
+        static List<SectionBase> SectionList = new List<SectionBase>();
 
-        public static void LoadPlugins()
+        public static void LoadSectionMaps()
         {
-            PluginList = new List<SectionBase>
+            SectionList = new List<SectionBase>
             {
+                new Atomic(),
+                new BinMeshPLG(),
                 new Clump(),
+                new EAMesh(),
                 new Extension(),
                 new FrameList(),
                 new GeometryList(),
@@ -28,11 +31,11 @@ namespace RWview
 
         public static SectionBase GetSectionFromId(string sectionId)
         {
-            if (!PluginList.Any(x => x.SectionId == sectionId))
+            if (!SectionList.Any(x => x.SectionId == sectionId))
             {
                 return null;
             }
-            return PluginList.First(section => section.SectionId == sectionId);
+            return SectionList.First(section => section.SectionId == sectionId);
         }
     }
 }

@@ -9,7 +9,7 @@
 
         public override void Deserialize(string hex, int levelsDeep)
         {
-            ConsoleWriter.Write(levelsDeep, $"{Name}", true);
+            ConsoleWriter.Write(levelsDeep, $"{Name}");
             if (hex == "")
             {
                 return;

@@ -9,17 +9,17 @@
 
         public override void Deserialize(string hex, int levelsDeep)
         {
-            ConsoleWriter.Write(levelsDeep, $"{Name}", true);
-            ConsoleWriter.Write(levelsDeep, $" ├─ HAnim Version : {Utils.ReadFile(hex, Index, 8, ref Index)}");
-            ConsoleWriter.Write(levelsDeep, $" ├─ Node ID : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true)}");
+            ConsoleWriter.Write(levelsDeep, $"{Name}");
+            ConsoleWriter.Write(levelsDeep + 1, $"HAnim Version : {Utils.ReadFile(hex, Index, 8, ref Index)}");
+            ConsoleWriter.Write(levelsDeep + 1, $"Node ID : {Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true)}");
             var boneCount = Utils.HexToInt(Utils.ReadFile(hex, Index, 8, ref Index), true);
             if (boneCount == 0)
             {
-                ConsoleWriter.Write(levelsDeep, $" └─ Bone Count : {boneCount}");
+                ConsoleWriter.Write(levelsDeep + 1, $"Bone Count : {boneCount}");
             }
             else
             {
-                ConsoleWriter.Write(levelsDeep, $" └─ THERE ARE BONES HERE, BUT HANIMPLG.CS HAS NOT BEEN WRITTEN TO HANDLE THEM.");
+                ConsoleWriter.Write(levelsDeep + 1, $"THERE ARE BONES HERE, BUT HANIMPLG.CS HAS NOT BEEN WRITTEN TO HANDLE THEM.");
             }
         }
     }

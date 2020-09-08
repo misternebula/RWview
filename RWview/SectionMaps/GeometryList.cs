@@ -12,12 +12,12 @@ namespace RWview.SectionMaps
 
         public override void Deserialize(string hex, int levelsDeep)
         {
-            ConsoleWriter.Write(levelsDeep, $"{Name}", true);
+            ConsoleWriter.Write(levelsDeep, $"{Name}");
             var structHeader = Utils.ReadHeader(hex, Index, ref Index);
             var structSection = new string(hex.Skip(Index).Take(structHeader.Length * 2).ToArray());
             Index += (structHeader.Length * 2);
-            ConsoleWriter.Write(levelsDeep, $" ├─ Struct");
-            ConsoleWriter.Write(levelsDeep, $" │   └─ Geometry Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
+            ConsoleWriter.Write(levelsDeep + 1, $"Struct");
+            ConsoleWriter.Write(levelsDeep + 2, $"Geometry Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
 
             while (Index != (hex.Length))
             {

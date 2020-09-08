@@ -12,23 +12,16 @@ namespace RWview.SectionMaps
 
         public override void Deserialize(string hex, int levelsDeep)
         {
-            ConsoleWriter.Write(levelsDeep, $"{Name}", true);
+            ConsoleWriter.Write(levelsDeep, $"{Name}");
             var structHeader = Utils.ReadHeader(hex, Index, ref Index);
             var structSection = new string(hex.Skip(Index).Take(structHeader.Length * 2).ToArray());
             Index += (structHeader.Length * 2);
-            ConsoleWriter.Write(levelsDeep, $" ├─ Struct");
+            ConsoleWriter.Write(levelsDeep + 1, $"Struct");
             var matCount = Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true);
-            ConsoleWriter.Write(levelsDeep, $" │   ├─ Material Count : {matCount}");
+            ConsoleWriter.Write(levelsDeep + 2, $"Material Count : {matCount}");
             for (int i = 0; i < matCount; i++)
             {
-                if (i + 1 != matCount)
-                {
-                    ConsoleWriter.Write(levelsDeep, $" │   ├─ [{i + 1}/{matCount}] Material Index : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
-                }
-                else
-                {
-                    ConsoleWriter.Write(levelsDeep, $" │   └─ [{i + 1}/{matCount}] Material Index : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
-                }
+                ConsoleWriter.Write(levelsDeep + 2, $"[{i + 1}/{matCount}] Material Index : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
             }
 
             while (Index != (hex.Length))

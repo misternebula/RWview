@@ -41,7 +41,9 @@ namespace RWview
             byte[] bytes = BitConverter.GetBytes(number);
             string retval = "";
             foreach (byte b in bytes)
+            {
                 retval += b.ToString("X2");
+            } 
             return new string(retval.SkipLast(8 - num.Length).ToArray());
         }
 
@@ -72,13 +74,15 @@ namespace RWview
         public static void FindNextSection(string hex, ref int index, int levelsDeep)
         {
             var nextHeader = Utils.ReadHeader(hex, index, ref index);
-            var nextHeaderPlugin = PluginManager.GetSectionFromId(nextHeader.ID);
+            var nextHeaderPlugin = SectionMapManager.GetSectionFromId(nextHeader.ID);
             if (nextHeaderPlugin == null)
             {
-                ConsoleWriter.Write(levelsDeep, $" ├─ Unknown ({nextHeader.ID})");
+                ConsoleWriter.Write(levelsDeep + 1, $"Unknown ({nextHeader.ID})");
+                index += nextHeader.Length * 2;
             }
             else
             {
+                var isLast = hex.Length == (index + nextHeader.Length * 2);
                 var plugin = nextHeaderPlugin.GetType();
                 var obj = (SectionBase)Activator.CreateInstance(plugin);
                 obj.Deserialize(Utils.ReadFile(hex, index, nextHeader.Length * 2, ref index), levelsDeep + 1);

@@ -12,16 +12,16 @@ namespace RWview.SectionMaps
 
         public override void Deserialize(string hex, int levelsDeep)
         {
-            ConsoleWriter.Write(levelsDeep, $"{Name}", true);
+            ConsoleWriter.Write(levelsDeep, $"{Name}");
             var structHeader = Utils.ReadHeader(hex, Index, ref Index);
             var structSection = new string(hex.Skip(Index).Take(structHeader.Length * 2).ToArray());
             Index += (structHeader.Length * 2);
-            ConsoleWriter.Write(levelsDeep, $" ├─ Struct");
-            ConsoleWriter.Write(levelsDeep, $" │   ├─ Flags : {Utils.HexToBinary(Utils.ReadFile(structSection, StructIndex, 4, ref StructIndex))}");
-            ConsoleWriter.Write(levelsDeep, $" │   ├─ Unknown Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 4, ref StructIndex), true)}");
-            ConsoleWriter.Write(levelsDeep, $" │   ├─ Face Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
-            ConsoleWriter.Write(levelsDeep, $" │   ├─ Vertex Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
-            ConsoleWriter.Write(levelsDeep, $" │   ├─ Frame Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
+            ConsoleWriter.Write(levelsDeep + 1, $"Struct");
+            ConsoleWriter.Write(levelsDeep + 2, $"Flags : {Utils.HexToBinary(Utils.ReadFile(structSection, StructIndex, 4, ref StructIndex))}");
+            ConsoleWriter.Write(levelsDeep + 2, $"Unknown Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 4, ref StructIndex), true)}");
+            ConsoleWriter.Write(levelsDeep + 2, $"Face Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
+            ConsoleWriter.Write(levelsDeep + 2, $"Vertex Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
+            ConsoleWriter.Write(levelsDeep + 2, $"Frame Count : {Utils.HexToInt(Utils.ReadFile(structSection, StructIndex, 8, ref StructIndex), true)}");
 
             while (Index != (hex.Length))
             {
